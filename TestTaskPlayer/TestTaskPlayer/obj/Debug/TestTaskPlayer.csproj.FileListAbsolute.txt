@@ -43,3 +43,5 @@ Y:\Projects from VS tutaaa\TestTaskPlayer\TestTaskPlayer\bin\Debug\System.Runtim
 Y:\Projects from VS tutaaa\TestTaskPlayer\TestTaskPlayer\bin\Debug\System.ValueTuple.xml
 Y:\Projects from VS tutaaa\TestTaskPlayer\TestTaskPlayer\obj\Debug\TestTaskPlayer_Content.g.cs
 Y:\Projects from VS tutaaa\TestTaskPlayer\TestTaskPlayer\obj\Debug\TestTaskPlayer.csprojAssemblyReference.cache
+Y:\Projects from VS tutaaa\TestTaskPlayer\TestTaskPlayer\obj\Debug\View\Player.g.cs
+Y:\Projects from VS tutaaa\TestTaskPlayer\TestTaskPlayer\obj\Debug\View\Player.baml

@@ -4,15 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TestTaskPlayer"
-             xmlns:vievModel="clr-namespace:TestTaskPlayer.ViewModel"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowStyle="None" >
+             xmlns:viewModel="clr-namespace:TestTaskPlayer.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:view="clr-namespace:TestTaskPlayer.View"
+        mc:Ignorable="d" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" WindowStyle="None" >
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
     <Window.DataContext>
-        <vievModel:PlayerViewModel/>
+        <viewModel:MainWindowVM />
     </Window.DataContext>
     <Grid x:Name="Grid1">
         <ItemsControl x:Name="OpenMenu">
@@ -42,23 +42,13 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid x:Name="FirstWindow" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <view:Player DataContext="{Binding Path=Player1}" />
+            <view:Player DataContext="{Binding Path=Player2}" Grid.Row="0" Grid.Column="1"/>
+            <view:Player DataContext="{Binding Path=Player3}" Grid.Row="1" Grid.Column="0"/>
+            <view:Player DataContext="{Binding Path=Player4}" Grid.Row="1" Grid.Column="1"/>
+            <!--<Grid x:Name="SecondWindow" Grid.Row="0" Grid.Column="1" Visibility="Hidden">
                 <Rectangle HorizontalAlignment="Center" Width="400" Margin="0,33,0,47" Fill="White"/>
-                <Image x:Name="FirstImage" Source="1db002938501d8796d4e78850973df51.jpg" Width="Auto" Margin="0,33,0,47" VerticalAlignment="Top"/>
-                <Button Background="#0dff7e" Margin="10,314,565,10" Click="Button_Play_Click" Tag="0">
-                    <materialDesign:PackIcon Kind="Play" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                <Button Background="#ff2635" Margin="80,314,495,10" Click="Button_Stop_Click" Tag="0">
-                    <materialDesign:PackIcon Kind="Pause" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                <Button Background="#FF373D44" Margin="565,314,10,10" Click="Button_Back_Click" Tag="0">
-                    <materialDesign:PackIcon Kind="ExitToApp" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                
-            </Grid>
-            <Grid x:Name="SecondWindow" Grid.Row="0" Grid.Column="1" Visibility="Hidden">
-                <Rectangle HorizontalAlignment="Center" Width="400" Margin="0,33,0,47" Fill="White"/>
-                <Image x:Name="SecondImage" Source="1db002938501d8796d4e78850973df51.jpg" Width="Auto" Margin="0,33,0,47" VerticalAlignment="Top"/>
+                <Image  x:Name="SecondImage" Source="1db002938501d8796d4e78850973df51.jpg" Width="Auto" Margin="0,33,0,47" VerticalAlignment="Top"/>
                 <Button Background="#0dff7e" Margin="10,314,565,10" Click="Button_Play_Click" Tag="1">
                     <materialDesign:PackIcon Kind="Play" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Button>
@@ -94,7 +84,7 @@
                 <Button Background="#FF373D44" Margin="565,314,10,10" Click="Button_Back_Click" Tag="3">
                     <materialDesign:PackIcon Kind="ExitToApp" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Button>
-            </Grid>
+            </Grid>-->
         </Grid>
         <Grid x:Name="shapka" Height="30" VerticalAlignment="Top" Background="#FF373D44">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin=" 0">

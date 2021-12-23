@@ -42,13 +42,13 @@ namespace TestTaskPlayer
             OpenFourthCommand = new DelegateCommand(OpenFourth);
             ExitCommand = new DelegateCommand(Exit);
 
-            items.Add(new NewItem() { Title = "", Command = OpenFirstCommand  });
-            items.Add(new NewItem() { Title = "", Command = OpenSecondCommand });
-            items.Add(new NewItem() { Title = "", Command = OpenThirdCommand });
-            items.Add(new NewItem() { Title = "", Command = OpenFourthCommand });
-            OpenMenu.ItemsSource = items;
-            grids = new Grid[] { FirstWindow, SecondWindow, ThirdWindow, FourthWindow };
-            images = new Image[] { FirstImage, SecondImage, ThirdImage, FourthImage };
+            //items.Add(new NewItem() { Title = "", Command = OpenFirstCommand  });
+            //items.Add(new NewItem() { Title = "", Command = OpenSecondCommand });
+            //items.Add(new NewItem() { Title = "", Command = OpenThirdCommand });
+            //items.Add(new NewItem() { Title = "", Command = OpenFourthCommand });
+            //OpenMenu.ItemsSource = items;
+            grids = new Grid[] {/* FirstWindow,*/ /*SecondWindow, ThirdWindow, FourthWindow*/ };
+            images = new Image[] { /*FirstImage,*/ /*SecondImage, ThirdImage, FourthImage*/ };
 
         }
 
@@ -119,15 +119,28 @@ namespace TestTaskPlayer
 
         private async void FramesCatch(Video vid, Image[] images, int k)
         {
+            int i = CountOpenVideos();
             while (videos[k].UsedFrames < videos[k].Frames && vid.IsPlaying)
             {
                 ReadFrames(vid, images, k);
                 videos[k].UsedFrames += 1;
-                await Task.Delay(1000 / (Convert.ToInt16(fps) * 2));
+                await Task.Delay(1000 / (Convert.ToInt16(fps) * (i+1)));
             }
            
         }
-
+        
+        private int CountOpenVideos()
+        {
+            int count = 4;
+            for(int i = 0; i < 4; i++)
+            {
+                if (videos[i] == null)
+                {
+                    count--;
+                }
+            }
+            return count;
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
