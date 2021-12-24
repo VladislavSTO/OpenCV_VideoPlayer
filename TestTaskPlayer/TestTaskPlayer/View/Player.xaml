@@ -14,20 +14,45 @@
     </UserControl.DataContext>-->
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <Style x:Key="ButtonGrid">
+            <Style.Triggers>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.Visibility" Value="Hidden" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid Visibility="{Binding Path=ActivePlayer, Converter={StaticResource booleanToVisibilityConverter}}">
+    <Grid><!--Visibility="{Binding Path=ActivePlayer, Converter={StaticResource booleanToVisibilityConverter}}"-->
+        <Grid >
             <Rectangle HorizontalAlignment="Center" Width="400" Margin="0,33,0,47" Fill="White"/>
-            <Image  Source="{Binding Fram, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="275" Width="640" Margin="0,35,0,0" VerticalAlignment="Top"/>
-            <Button Background="#0dff7e" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" Width="100" Command="{Binding Path=PlayCommand}" Tag="1">
-                <materialDesign:PackIcon Kind="Play" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
-            <Button Background="#ff2635" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="130,0,0,10" Width="100" Command="{Binding Path=StopCommand}" Tag="1">
-                <materialDesign:PackIcon Kind="Pause" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
-            <Button Background="#FF373D44"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Width="100" Command="{Binding Path=BackCommand}" Tag="1">
-                <materialDesign:PackIcon Kind="ExitToApp" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
+            <Image  Source="{Binding Fram, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="275" Width="640" Margin="0,35,0,0" VerticalAlignment="Top">
+                <!--<Image.ToolTip>
+                    <ToolTip Placement="MousePoint"  Width="400">
+                        <Grid>
+                            <Button Background="#0dff7e" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" Width="100" Command="{Binding Path=PlayCommand}">
+                                <materialDesign:PackIcon Kind="Play" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Button>
+                            <Button Background="#ff2635" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="130,0,0,10" Width="100" Command="{Binding Path=StopCommand}">
+                                <materialDesign:PackIcon Kind="Pause" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Button>
+                            <Button Background="#FF373D44"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Width="100" Command="{Binding Path=BackCommand}">
+                                <materialDesign:PackIcon Kind="ExitToApp" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Button>
+                        </Grid>
+                    </ToolTip>
+                </Image.ToolTip>-->
+            </Image>
+            <Grid Style="{StaticResource ButtonGrid}" Background="White">
+                <Button Background="#0dff7e" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" Width="100" Command="{Binding Path=PlayCommand}">
+                    <materialDesign:PackIcon Kind="Play" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+                <Button Background="#ff2635" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="130,0,0,10" Width="100" Command="{Binding Path=StopCommand}">
+                    <materialDesign:PackIcon Kind="Pause" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+                <Button Background="#FF373D44"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Width="100" Command="{Binding Path=BackCommand}">
+                    <materialDesign:PackIcon Kind="ExitToApp" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+            </Grid>
         </Grid>
         <Grid Visibility="{Binding Path=PathWindow, Converter={StaticResource booleanToVisibilityConverter}}">
             <Image Source="pngwing.com.png" HorizontalAlignment="Center" Width="156" Height="156" Margin="240,35,240,165"/>

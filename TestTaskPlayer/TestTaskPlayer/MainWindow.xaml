@@ -15,24 +15,6 @@
         <viewModel:MainWindowVM />
     </Window.DataContext>
     <Grid x:Name="Grid1">
-        <ItemsControl x:Name="OpenMenu">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="2" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Image Source="pngwing.com.png" HorizontalAlignment="Center" Width="156" Height="156" Margin="240,35,240,165"/>
-                        <TextBox Text="{Binding  Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Путь к файлу" FontSize="16" Margin="160,191,160,119" RenderTransformOrigin="0.497,0.521" Width="311" Height="46" />
-                        <Button Command="{Binding Command}" BorderBrush="{x:Null}" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="252,0,252,62" >
-                            Воспроизвести
-                        </Button>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
         <Grid ShowGridLines="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -46,45 +28,6 @@
             <view:Player DataContext="{Binding Path=Player2}" Grid.Row="0" Grid.Column="1"/>
             <view:Player DataContext="{Binding Path=Player3}" Grid.Row="1" Grid.Column="0"/>
             <view:Player DataContext="{Binding Path=Player4}" Grid.Row="1" Grid.Column="1"/>
-            <!--<Grid x:Name="SecondWindow" Grid.Row="0" Grid.Column="1" Visibility="Hidden">
-                <Rectangle HorizontalAlignment="Center" Width="400" Margin="0,33,0,47" Fill="White"/>
-                <Image  x:Name="SecondImage" Source="1db002938501d8796d4e78850973df51.jpg" Width="Auto" Margin="0,33,0,47" VerticalAlignment="Top"/>
-                <Button Background="#0dff7e" Margin="10,314,565,10" Click="Button_Play_Click" Tag="1">
-                    <materialDesign:PackIcon Kind="Play" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                <Button Background="#ff2635" Margin="80,314,495,10" Click="Button_Stop_Click" Tag="1">
-                    <materialDesign:PackIcon Kind="Pause" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                <Button Background="#FF373D44" Margin="565,314,10,10" Click="Button_Back_Click" Tag="1">
-                    <materialDesign:PackIcon Kind="ExitToApp" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-            </Grid>
-            <Grid x:Name="ThirdWindow" Grid.Row="1" Grid.Column="0" Visibility="Hidden">
-                <Rectangle HorizontalAlignment="Center" Width="400" Margin="0,33,0,47" Fill="White"/>
-                <Image x:Name="ThirdImage" Source="1db002938501d8796d4e78850973df51.jpg" Width="Auto" Margin="0,33,0,47" VerticalAlignment="Top"/>
-                <Button Background="#0dff7e" Margin="10,314,565,10" Click="Button_Play_Click" Tag="2">
-                    <materialDesign:PackIcon Kind="Play" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                <Button Background="#ff2635" Margin="80,314,495,10" Click="Button_Stop_Click" Tag="2">
-                    <materialDesign:PackIcon Kind="Pause" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                <Button Background="#FF373D44" Margin="565,314,10,10" Click="Button_Back_Click" Tag="2">
-                    <materialDesign:PackIcon Kind="ExitToApp" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-            </Grid>
-            <Grid x:Name="FourthWindow" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
-                <Rectangle HorizontalAlignment="Center" Width="400" Margin="0,33,0,47" Fill="White"/>
-                <Image x:Name="FourthImage" Source="1db002938501d8796d4e78850973df51.jpg" Width="Auto" Margin="0,33,0,47" VerticalAlignment="Top"/>
-                <Button Background="#0dff7e" Margin="10,314,565,10" Click="Button_Play_Click" Tag="3">
-                    <materialDesign:PackIcon Kind="Play" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                <Button Background="#ff2635" Margin="80,314,495,10" Click="Button_Stop_Click" Tag="3">
-                    <materialDesign:PackIcon Kind="Pause" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-                <Button Background="#FF373D44" Margin="565,314,10,10" Click="Button_Back_Click" Tag="3">
-                    <materialDesign:PackIcon Kind="ExitToApp" Foreground="White" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Button>
-            </Grid>-->
         </Grid>
         <Grid x:Name="shapka" Height="30" VerticalAlignment="Top" Background="#FF373D44">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin=" 0">

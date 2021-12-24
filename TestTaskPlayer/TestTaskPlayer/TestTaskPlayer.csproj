@@ -94,11 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BaseViewModel.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Model\Video.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
-    <Compile Include="ViewModel\NewItem.cs" />
-    <Compile Include="ViewModel\PlayerViewModel.cs" />
     <Compile Include="ViewModel\VMSinglePlayer.cs" />
     <Compile Include="View\Player.xaml.cs">
       <DependentUpon>Player.xaml</DependentUpon>
