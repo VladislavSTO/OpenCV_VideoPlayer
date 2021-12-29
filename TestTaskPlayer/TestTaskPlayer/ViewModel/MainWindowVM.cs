@@ -1,70 +1,111 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace TestTaskPlayer.ViewModel
 {
-    class MainWindowVM : INotifyPropertyChanged
+    class MainWindowVM : BaseViewModel
     {
-        private VMSinglePlayer _player1;
-        private VMSinglePlayer _player2;
-        private VMSinglePlayer _player3;
-        private VMSinglePlayer _player4;
+	    private bool MainWindowState = false;
+        private string _userSampleChoise = "Выберите тип сетки";
 
         public MainWindowVM()
         {
-            Player1 = new VMSinglePlayer();
-            Player2 = new VMSinglePlayer();
-            Player3 = new VMSinglePlayer();
-            Player4 = new VMSinglePlayer();
-            ExitCommand = new DelegateCommand(Exit);
-        }
-        public ICommand ExitCommand { get; private set; }
-        private void Exit(object obj)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
-        public VMSinglePlayer Player1
-        {
-            get => _player1;
-            set
+	        ExitCommand = new DelegateCommand(Exit);
+            ExplandCommand = new DelegateCommand(Expland);
+            MinimizeCommand = new DelegateCommand(Minimize);
+            SampleChoised = SampleType.Type2X2;
+            //
+            
+            Players = new ObservableCollection<VMSinglePlayer>
             {
-                _player1 = value;
-                OnPropertyChanged("Player1");
-            }
-        }
-        public VMSinglePlayer Player2
-        {
-            get => _player2;
-            set
-            {
-                _player2 = value;
-                OnPropertyChanged("Player2");
-            }
-        }
-        public VMSinglePlayer Player3
-        {
-            get => _player3;
-            set
-            {
-                _player3 = value;
-                OnPropertyChanged("Player3");
-            }
-        }
-        public VMSinglePlayer Player4
-        {
-            get => _player4;
-            set
-            {
-                _player4 = value;
-                OnPropertyChanged("Player4");
-            }
+	            new VMSinglePlayer(),
+	            new VMSinglePlayer(),
+	            new VMSinglePlayer(),
+	            new VMSinglePlayer(),
+	            new VMSinglePlayer(),
+	            new VMSinglePlayer(),
+	            new VMSinglePlayer(),
+	            new VMSinglePlayer(),
+	            new VMSinglePlayer()
+            };
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public ICommand ExplandCommand { get; private set; }
+
+        public ICommand ExitCommand { get; private set; }
+
+        public ICommand MinimizeCommand { get; private set; }
+        public ObservableCollection<VMSinglePlayer> Players
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+	        get => NotifyPropertyGet(() => Players);
+	        set => NotifyPropertySet(() => Players, value);
         }
+        
+        public SampleType SampleChoised
+        {
+	        get => NotifyPropertyGet(() => SampleChoised);
+	        set => NotifyPropertySet(() => SampleChoised, value);
+        }
+        public string UserSampleChoise
+        {
+	        get => _userSampleChoise;
+	        set
+	        {
+		        _userSampleChoise = value;
+		        ChangeSampleChoised();
+	        }
+        }
+
+        private void Exit(object obj)
+        {
+	        Environment.Exit(1);
+        }
+
+        private void Expland(object obj)
+        {
+	        if (!MainWindowState)
+	        {
+		        Application.Current.MainWindow.WindowState = WindowState.Maximized;
+		        MainWindowState = true;
+	        }
+	        else
+	        {
+		        Application.Current.MainWindow.WindowState = WindowState.Normal;
+		        MainWindowState = false;
+	        }
+
+        }
+
+        private void ChangeSampleChoised()
+        {
+	        switch (_userSampleChoise)
+	        {
+                case "Сетка 2х2":
+	                SampleChoised = SampleType.Type2X2;
+                    break;
+                case "Сетка 3х3":
+	                SampleChoised = SampleType.Type3X3;
+                    break;
+                case "Сетка 1:5":
+	                SampleChoised = SampleType.TypeOneBigFiveSmall;
+	                break;
+                case "Сетка 2:6":
+	                SampleChoised = SampleType.TypeTwoBigSixSmall;
+	                break;
+                default:
+	                SampleChoised = SampleType.Type2X2;
+                    break;
+	        }
+        }
+        private void Minimize(object obj)
+        {
+	        Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        
     }
 }

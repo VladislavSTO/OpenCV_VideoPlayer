@@ -1,91 +1,53 @@
 ﻿using OpenCvSharp;
 using OpenCvSharp.WpfExtensions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace TestTaskPlayer.Data
 {
- 
-    public class Video 
+	public class Video 
     {
-        bool isPlaying = true;
-        Mat m;
-        VideoCapture capture;
-        int usedframes = 1;
-        public string pathvideo = " ";
+        private bool _isPlaying = true;
+        private Mat _oneMatFrame;
+        private VideoCapture _capture;
+        private int _usedFrames = 1;
+        private string _pathVideo = " ";
 
-        public double Fps 
-        {
-            get
-            {
-                return capture.Fps;
-            }
-        }
- 
-        public double Frames
-        {
-            get
-            {
-                return capture.FrameCount;
-            }
+        public double Fps => _capture.Fps;
 
-        }
+        public double Frames => _capture.FrameCount;
 
         public bool IsPlaying
         {
-            get
-            {
-                return isPlaying;
-            }
-            set
-            {
-                isPlaying = value;
-            }
+            get => _isPlaying;
+            set => _isPlaying = value;
         }
 
         public string PathVideo
         {
-            get
-            {
-                return pathvideo;
-            }
+            get => _pathVideo;
             set
             {
-                pathvideo = value;
-                capture = new VideoCapture(pathvideo);
+                _pathVideo = value;
+                _capture = new VideoCapture(_pathVideo);
             }
         }
-
+        
         public int UsedFrames
         {
-            get
-            {
-                return usedframes;
-            }
-            set
-            {
-                usedframes = value;
-            }
+            get => _usedFrames;
+            set => _usedFrames = value;
         }
 
         public BitmapSource ReadFrames()
         {
-            if (isPlaying)
+            if (_isPlaying)
             {
-                m = new Mat();
-                capture.Read(m);
-
-                if (capture.Read(m) != false)
+                _oneMatFrame = new Mat();
+                var success =  _capture.Read(_oneMatFrame);
+                if (success)
                 {
-                    return BitmapSourceConverter.ToBitmapSource(m);
+                    return _oneMatFrame.ToBitmapSource();
                 }
-                else
-                    return null;
             }
             return null;
         }
