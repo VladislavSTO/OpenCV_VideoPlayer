@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using TestTaskPlayer.Data;
+using TestTaskPlayer.Model;
 
 
 namespace TestTaskPlayer.ViewModel
@@ -24,6 +24,8 @@ namespace TestTaskPlayer.ViewModel
 			LoadingImage = false;
 			Title = "";
 		}
+
+		public event Action PlayerDoubleClicked;
 
 		public bool LoadingImage
 		{
@@ -53,6 +55,11 @@ namespace TestTaskPlayer.ViewModel
 		{
 			get => NotifyPropertyGet(() => Title);
 			set => NotifyPropertySet(() => Title, value);
+		}
+
+		public void OnPlayerDoubleClicked()
+		{
+			PlayerDoubleClicked?.Invoke();
 		}
 
 		public ICommand PlayCommand { get; private set; }
@@ -90,7 +97,7 @@ namespace TestTaskPlayer.ViewModel
 		private void Play()
 		{
 			LoadingImage = false;
-			FramesCatch(_vid);
+			FramesCatch();
 			_vid.IsPlaying = true;
 		}
 
@@ -126,18 +133,18 @@ namespace TestTaskPlayer.ViewModel
 			}
 		}
 
-		private void ReadFrames(Video _vid)
+		private void ReadFrames()
 		{
 			Application.Current.Dispatcher.Invoke(() => Frame = _vid.ReadFrames());
 		}
 
-		private async void FramesCatch(Video _vid)
+		private async void FramesCatch()
 		{
 			if (_vid.Frames > 0)
 			{
 				while (_vid.UsedFrames < _vid.Frames && _vid.IsPlaying)
 				{
-					ReadFrames(_vid);
+					ReadFrames();
 					_vid.UsedFrames += 1;
 					await Task.Delay(1000 / Convert.ToInt16(_vid.Fps));
 				}
@@ -146,7 +153,7 @@ namespace TestTaskPlayer.ViewModel
 			{
 				while (_vid.IsPlaying)
 				{
-					ReadFrames(_vid);
+					ReadFrames();
 					_vid.UsedFrames += 1;
 					await Task.Delay(1000 / Convert.ToInt16(_vid.Fps));
 				}

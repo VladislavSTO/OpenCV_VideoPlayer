@@ -14,12 +14,13 @@
 		<BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
 	</UserControl.Resources>
 	<Grid x:Name="MainGrid"
-		  Background="#00000000">
+          Background="#FFDAC8C8">
 		<Image Source="/View/81948.png"
 			   Height="50"
 			   Width="50"
-			   Visibility="{Binding LoadingImage, Converter={StaticResource booleanToVisibilityConverter}}">
-
+			   Visibility="{Binding LoadingImage, Converter={StaticResource booleanToVisibilityConverter}}"
+		>
+				
 			<Image.RenderTransform>
 				<RotateTransform x:Name="rotate"
 								 CenterX="25"
@@ -32,7 +33,7 @@
 							<DoubleAnimation Storyboard.TargetName="rotate"
 											 Storyboard.TargetProperty="Angle"
 											 By="360"
-											 Duration="0:0:1" />
+											 Duration="0:0:1.5" />
 						</Storyboard>
 					</BeginStoryboard>
 				</EventTrigger>
@@ -40,8 +41,8 @@
 		</Image>
 		<Grid Visibility="{Binding Path=ActivePlayer, Converter={StaticResource booleanToVisibilityConverter}}">
 			<Image Source="{Binding Frame, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				   Margin="0,35,0,0"
-				   VerticalAlignment="Center" />
+			       VerticalAlignment="Center"
+				   MouseLeftButtonDown="OnMouseLeftButtonDown" />
 			<Grid x:Name="GridWithButton"
 				  Height="50"
 				  VerticalAlignment="Bottom"
@@ -114,8 +115,6 @@
 				</Grid>
 				
 				<TextBox Text="{Binding  Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				         Grid.Row="0"
-				         Grid.Column="0"
 				         VerticalAlignment="Center"
 				         FontWeight="Bold"
 				         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -124,7 +123,8 @@
 				         Margin="0,20,0,0"
 				         Width="311"
 				         Height="46"
-				         Cursor="IBeam" />
+				         Cursor="IBeam" 
+				         />
 				<Button Command="{Binding OpenCommand}"
 				        BorderBrush="{x:Null}"
 				        Height="Auto"

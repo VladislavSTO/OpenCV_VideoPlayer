@@ -97,6 +97,7 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Model\Video.cs" />
+    <Compile Include="ViewModel\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\SampleType.cs" />
     <Compile Include="ViewModel\TypeEnumToSampleConverter.cs" />
